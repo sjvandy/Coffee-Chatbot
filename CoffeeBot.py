@@ -72,14 +72,14 @@ def getDrinkType():
 		elif 'brewed' in res or 'coffee' in res:
 			return 'brewed coffee'
 		else:
-			res = input("Sorry, but we don't serve that kind of coffee here, what would you like instead?").lower()
+			res = input("Sorry, but we don't serve that kind of coffee here, what would you like instead?\n").lower()
 
 
 def orderLatte(flavor = 'none', milk = 'none'):
 	if flavor == 'none':
 		properResponce = False
 		while not properResponce:
-			flavor = input("What flavor? 'Chocolate, Vanilla, or Caramel?").lower()
+			flavor = input("What flavor? 'Chocolate, Vanilla, or Caramel?\n").lower()
 			if 'vanilla' in flavor:
 				flavor = 'vanilla'
 				properResponce = True
@@ -105,7 +105,7 @@ def orderLatte(flavor = 'none', milk = 'none'):
 				milk = '2%'
 				properResponce = True
 			else:
-				milk = input('Sorry, we do not carry that kind of milk, please select from the following/n').lower()
+				milk = input('Sorry, we do not carry that kind of milk, please select from the following\n').lower()
 	return f'{milk} {flavor} latte'
 
 coffeeBot()
