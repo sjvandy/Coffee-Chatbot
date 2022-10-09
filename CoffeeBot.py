@@ -2,22 +2,20 @@
 #Coffee Chatbot Steven Vandegrift 2022
 import json
 orderDatabase = {}
+continueOrdering = True
 
 def loadDatabase():
 		try:
 			with open('DrinkDatabase.json') as drinkDatabase:
-				print('Database successfully loaded')
 				return json.load(drinkDatabase)
 		except:
-			print('No Database to Load')
+			pass
 		
 def uploadToDatabase(database):
 	with open('DrinkDatabase.json', 'w') as drinkDatabase:
 		json.dump(database, drinkDatabase)
-		print('Data successfully uploaded')
 
 def coffeeBot():
-	print("Welcome to the cafe")
 	drink = getDrinkType()
 	size = getSize()
 	print(f"Alright, that's one {size} {drink} coming up!")
@@ -120,7 +118,19 @@ def orderLatte(flavor = 'none', milk = 'none'):
 				milk = input('Sorry, we do not carry that kind of milk, please select from the following\n').lower()
 	return f'{milk} {flavor} latte'
 
-orderDatabase = loadDatabase()
-coffeeObject = coffeeBot()
-orderDatabase['orders'].append(coffeeObject)
-uploadToDatabase(orderDatabase)
+def requestAnotherOrder():
+	responce = input('Would you like to make another order? "yes" or "no"\n').lower()
+	if 'no' in responce:
+		return False
+	elif 'yes' in responce:
+		return True
+	else:
+		print('if statement was ignored')
+
+print("Welcome to the cafe")
+while continueOrdering == True:
+	orderDatabase = loadDatabase()
+	coffeeObject = coffeeBot()
+	orderDatabase['orders'].append(coffeeObject)
+	uploadToDatabase(orderDatabase)
+	continueOrdering = requestAnotherOrder()
