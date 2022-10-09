@@ -1,7 +1,22 @@
 #!/usr/bin/env python3
 #Coffee Chatbot Steven Vandegrift 2022
 import json
+orderDatabase = {
+	'orders': []
+}
 
+def loadDatabase():
+		try:
+			with open('DrinkDatabase.json') as drinkDatabase:
+				print('Database successfully loaded')
+				return json.load(drinkDatabase)
+		except:
+			print('No Database to Load')
+		
+def uploadToDatabase(database):
+	with open('DrinkDatabase.json', 'w') as drinkDatabase:
+		json.dump(database, drinkDatabase)
+		print('Data successfully uploaded')
 
 def coffeeBot():
 	print("Welcome to the cafe")
@@ -15,8 +30,7 @@ def coffeeBot():
 		'drink_type': drink,
 		'drink_size': size
 	}
-	with open('DrinkDatabase', 'a') as drinkDatabase:
-		json.dump(order, drinkDatabase)
+	return order
 	
 
 def getSize():
@@ -108,4 +122,7 @@ def orderLatte(flavor = 'none', milk = 'none'):
 				milk = input('Sorry, we do not carry that kind of milk, please select from the following\n').lower()
 	return f'{milk} {flavor} latte'
 
-coffeeBot()
+orderDatabase = loadDatabase()
+coffeeObject = coffeeBot()
+orderDatabase['orders'].append(coffeeObject)
+uploadToDatabase(orderDatabase)
