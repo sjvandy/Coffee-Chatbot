@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 #Coffee Chatbot Steven Vandegrift 2022
 import json
-orderDatabase = {
-	'orders': []
-}
+orderDatabase = {}
 
 def loadDatabase():
 		try:
