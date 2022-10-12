@@ -29,19 +29,21 @@ def coffeeBot():
 	return order
 	
 
-def getSize():
-	properResponce = False
-	res = input('What size? \nSmall, Medium, or Large\n').lower()
-	while not properResponce:
-		if 'small' in res:
-			properResponce
-			return 'small'
-		elif 'medium' in res:
-			return 'medium'
-		elif 'large' in res:
-			return 'large'
-		else:
-			res = input("hmmm, that doesn't appear to be an option, what size do you want?\n").lower()
+def getSize(size = 'none'):
+	if size == 'none':
+		properResponce = False
+		res = input('What size? \nSmall, Medium, or Large\n').lower()
+		while not properResponce:
+			if 'small' in res:
+				properResponce
+				return 'small'
+			elif 'medium' in res:
+				return 'medium'
+			elif 'large' in res:
+				return 'large'
+			else:
+				res = input("hmmm, that doesn't appear to be an option, what size do you want?\n").lower()
+	
 
 def getDrinkType():
 	properResponce = False
